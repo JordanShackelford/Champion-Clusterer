@@ -2,11 +2,20 @@ import requests
 import json
 from tkinter import *
 
+def saveAPIKey():
+	myAPIKey = e1.get()
+	print("Your API key has been saved as " + myAPIKey)
+
 master = Tk()
+myAPIKey = ""
 Label(master, text="Your API Key: ").grid(row=0)
 e1 = Entry(master)
 e1.grid(row=0, column=1)
+b = Button(master, text="SUBMIT", command=saveAPIKey)
+b.grid(row=0, column=2)
 mainloop( )
+
+
 
 '''
 MYAPIKEY = input()
