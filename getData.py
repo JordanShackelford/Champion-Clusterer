@@ -22,14 +22,12 @@ e1 = Entry(master)
 e1.grid(row=0, column=1)
 b = Button(master, text="Get Data", command = saveAPIKey)
 b.grid(row=0, column=2)
-cbvar1 = IntVar()
-Checkbutton(master, text="Silver", variable=cbvar1).grid(row=2, column=0)
-cbvar2 = IntVar()
-Checkbutton(master, text="Gold", variable=cbvar2).grid(row=2, column=1)
-cbvar3 = IntVar()
-Checkbutton(master, text="Platinum", variable=cbvar3).grid(row=2, column=2)
-cbvar4 = IntVar()
-Checkbutton(master, text="Diamond", variable=cbvar4).grid(row=2, column=3)
+
+eloVar = IntVar() #all the radio buttons are tied to this variable
+Radiobutton(master, text="Silver", variable=eloVar, value=1).grid(row=1,column=0)
+Radiobutton(master, text="Gold", variable=eloVar, value=2).grid(row=1,column=1)
+Radiobutton(master, text="Platinum", variable=eloVar, value=3).grid(row=1,column=2)
+Radiobutton(master, text="Diamond", variable=eloVar, value=4).grid(row=1,column=3)
 mainloop( )
 
 
