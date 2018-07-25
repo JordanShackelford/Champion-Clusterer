@@ -1,6 +1,8 @@
 import requests
 import json
 from tkinter import *
+from sklearn.cluster import KMeans
+import numpy as np
 
 def saveAPIKey():
 	myAPIKey = e1.get()
@@ -12,9 +14,15 @@ def sendQueryAndPrintResponse(APIKey):
 	content = response.content
 	#print(content)
 	jcontent = json.loads(content.decode('utf8'))
-	#print(jcontent)
 	
-	print(len(jcontent))
+def generateClusters():
+	X = np.array([[1, 2], [1, 4], [1, 0],
+			[4, 2], [4, 4], [4, 0]])
+	#TODO: Change number of clusters to be equal to the value of the slider on the gui			
+	kmeans = KMeans(n_cluster=2, random_state=0).fit(X)
+	kmeans.labels_
+	kmeans.predict([[0, 0], [4, 4]])
+	kmeans.cluster_centers_
 	
 master = Tk()
 master.resizable(False,False)
@@ -30,7 +38,7 @@ Radiobutton(master, text="Gold", variable=eloVar, value=2, indicatoron=0).grid(r
 Radiobutton(master, text="Platinum", variable=eloVar, value=3, indicatoron=0).grid(row=1,column=2)
 Radiobutton(master, text="Diamond", variable=eloVar, value=4, indicatoron=0).grid(row=1,column=3)
 
-w = Scale(master, label="# of Clusters:", from_= 0, to = 100, orient=HORIZONTAL).grid()
+w = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL).grid()
 mainloop( )
 
 
