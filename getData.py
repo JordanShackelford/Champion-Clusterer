@@ -23,6 +23,11 @@ def generateClusters():
 	kmeans.labels_
 	kmeans.predict([[0, 0], [4, 4]])
 	kmeans.cluster_centers_
+
+
+def updateNumClusters(val):
+	numClusters = val
+	print(numClusters)
 	
 master = Tk()
 master.resizable(False,False)
@@ -32,11 +37,9 @@ e1.grid(row=0, column=1)
 b = Button(master, text="Get Data", command = saveAPIKey)
 b.grid(row=0, column=3)
 
-w = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL).grid()
+numClusters = 0
+clusterSlider = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL, activebackground="yellow", command=updateNumClusters).grid(row=2,column=0)
 mainloop( )
-
-#github won't push this file...
-
 
 
 
