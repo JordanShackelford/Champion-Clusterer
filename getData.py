@@ -3,6 +3,9 @@ import json
 from tkinter import *
 from sklearn.cluster import KMeans
 import numpy as np
+import io
+import base64
+import urllib.request
 
 def saveAPIKey():
 	myAPIKey = e1.get()
@@ -37,22 +40,17 @@ e1.grid(row=0, column=1)
 b = Button(master, text="Get Data", command = saveAPIKey)
 b.grid(row=0, column=3)
 
+imgUrlAatrox = "ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Aatrox.png"
+#imagebytAatrox = urllib.urlopen(imgUrlAatrox).read()
+with urllib.request.urlopen("http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Aatrox.png") as url:
+	imagebytAatrox = url.read()
+imageb64Aatrox = base64.encodestring(imagebytAatrox)
+photo = PhotoImage(data=imageb64Aatrox)
+cv = Canvas(bg='white')
+cv.create_image(10, 10, image = photo, anchor='nw')
+cv.grid(row=3)
+
 numClusters = 0
 clusterSlider = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL, activebackground="yellow", command=updateNumClusters).grid(row=2,column=0)
 mainloop( )
 
-
-
-
-
-'''
-
-
-
-# printing response instead of response.content will not display the data--------
-
-print(content) 
-# bytes object needs to be decoded to a string to be used as a JSON object
-
-#--------------------------------------------------------------------------------
-'''
