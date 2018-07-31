@@ -41,7 +41,19 @@ b = Button(master, text="Get Data", command = saveAPIKey)
 b.grid(row=0, column=3)
 
 imgUrls = ["http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Aatrox.png",
-			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ahri.png"]
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ahri.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Akali.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Alistar.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Amumu.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Anivia.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Annie.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ashe.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/AurelionSol.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Azir.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Bard.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Blitzcrank.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Brand.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Braum.png",]
 byteImages = []
 b64Images = []
 photos = []
@@ -52,12 +64,11 @@ for i in range(0,len(imgUrls)):
 	b64Images.append(base64.encodebytes(byteImages[i]))
 	photos.append(PhotoImage(data=b64Images[i]))
 	
-cv = Canvas(bg='white')
+cv = Canvas(bg='white',width="800",height="600")
 
 for i in range(0,len(photos)):
-	cv.create_image(i + 50,0, image=photos[i], anchor='nw')
+	cv.create_image(i * 100,0, image=photos[i], anchor='nw')
 	cv.grid(row=3)
-
 
 numClusters = 0
 clusterSlider = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL, activebackground="yellow", command=updateNumClusters).grid(row=2,column=0)
