@@ -1,11 +1,14 @@
-import requests
-import json
-from tkinter import *
-from sklearn.cluster import KMeans
 import numpy as np
 import io
 import base64
 import urllib.request
+import requests
+import json
+from tkinter import *
+from sklearn.cluster import KMeans
+from PIL import Image, ImageTk
+
+
 
 def saveAPIKey():
 	myAPIKey = e1.get()
@@ -26,11 +29,13 @@ def generateClusters():
 	kmeans.labels_
 	kmeans.predict([[0, 0], [4, 4]])
 	kmeans.cluster_centers_
-
-
+	
 def updateNumClusters(val):
-	numClusters = val
-	print(numClusters)
+	cv.delete("all")
+	for i in range(0,int(val)):
+		cv.create_image(i * photos[i].width(),0, image=photos[i], anchor='nw')
+		#cv.create_image(0,0,image=photos[numClusters],anchor='nw')
+	cv.grid(row=3)
 	
 master = Tk()
 master.resizable(False,False)
@@ -57,20 +62,20 @@ imgUrls = ["http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Aatrox.pn
 byteImages = []
 b64Images = []
 photos = []
-			
+
+numClusters = 3
+
 for i in range(0,len(imgUrls)):
 	with urllib.request.urlopen(imgUrls[i]) as url:
 		byteImages.append(url.read())
 	b64Images.append(base64.encodebytes(byteImages[i]))
 	photos.append(PhotoImage(data=b64Images[i]))
-	
+	photos[i] = photos[i].subsample(2,2)
+
 cv = Canvas(bg='white',width="800",height="600")
 
-for i in range(0,len(photos)):
-	cv.create_image(i * 100,0, image=photos[i], anchor='nw')
-	cv.grid(row=3)
 
-numClusters = 0
-clusterSlider = Scale(master, label="# of Clusters:", from_= 2, to = 20, orient=HORIZONTAL, activebackground="yellow", command=updateNumClusters).grid(row=2,column=0)
+
+clusterSlider = Scale(master, label="# of Clusters:", from_= 1, to = 20, orient=HORIZONTAL, activebackground="blue", command=updateNumClusters).grid(row=2,column=0)
 mainloop( )
 
