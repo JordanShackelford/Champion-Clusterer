@@ -31,11 +31,14 @@ def generateClusters():
 	kmeans.cluster_centers_
 	
 def updateNumClusters(val):
-	cv.delete("all")
-	for i in range(0,int(val)):
-		cv.create_image(i * photos[i].width(),0, image=photos[i], anchor='nw')
-		#cv.create_image(0,0,image=photos[numClusters],anchor='nw')
-	cv.grid(row=3)
+	cv.delete("all") #clear the canvas
+	counter = 0
+	for i in range(0,14):
+		for j in range(0,10):
+			if counter < int(val):
+				cv.create_image(i * photos[i].width(),j*photos[0].height(), image=photos[counter], anchor='nw')
+				counter += 1
+	cv.grid(row=3) 
 	
 master = Tk()
 master.resizable(False,False)
@@ -58,7 +61,61 @@ imgUrls = ["http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Aatrox.pn
 			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Bard.png",
 			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Blitzcrank.png",
 			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Brand.png",
-			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Braum.png",]
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Braum.png",
+
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Caitlyn.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Camille.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Cassiopeia.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Chogath.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Corki.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Darius.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Diana.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/DrMundo.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Draven.png"]
+'''
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ekko.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Elise.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Evelynn.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ezreal.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Fiddlesticks.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Fiora.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Fizz.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Galio.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Gangplank.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Garen.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Gnar.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Gragas.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Graves.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Hecarim.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Heimerdinger.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Illaoi.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Irelia.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Ivern.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Janna.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/JarvanIV.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Jax.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Jayce.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Jhin.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Jinx.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kai'sa.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kalista",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Karma.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Karthus.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kassadin.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Katarina.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kayle.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kayn.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kennen.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Khazix.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kindred.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Kled.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/KogMaw.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/LeBlanc.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/LeeSin.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Leona.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Lissandra.png",
+			"http://ddragon.leagueoflegends.com/cdn/8.14.1/img/champion/Lucian.png"
+			'''
 byteImages = []
 b64Images = []
 photos = []
